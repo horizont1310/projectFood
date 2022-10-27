@@ -1,3 +1,5 @@
+// import {getResource} from '../services/services';
+
 function cards() {
   // ​‌‌‍⁡⁢⁣⁢Используем классы для карточек⁡​
 
@@ -43,16 +45,6 @@ function cards() {
     }
   }
 
-  const getResource = async (url) => {
-    const res = await fetch(url);
-
-    if (!res.ok) {
-      throw new Error(`Could not fatcg ${url}, status: ${res.status}`);
-    }
-
-    return await res.json();
-  };
-
   // getResource('http://localhost:3000/menu') //создание карточек через сервер
   //       .then(data => {
   // data.forEach(({img, altimg, title, descr, price}) => { //это деструктуризация( объекты в db.json)
@@ -75,4 +67,4 @@ function cards() {
   });
 }
 
-module.exports = cards;
+export default cards;
