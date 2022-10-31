@@ -3,15 +3,32 @@
 let path = require('path');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: './js/script.js',
   output: {
-    filename: 'bundle.js', //название файла в dist
+    filename: 'bundle.js',
     path: __dirname + '/js'
   },
   watch: true,
 
-  devtool: "source-map", //для того, чтоб код был читабельным
+  devtool: "source-map",
 
-  module: {}
+  module: {
+    rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [['@babel/preset-env', {
+                debug: true,
+                corejs: 3,
+                useBuiltIns: "usage"
+            }]]
+          }
+        }
+      }
+    ]
+  }
 };
